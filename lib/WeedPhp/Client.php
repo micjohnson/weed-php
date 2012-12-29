@@ -5,17 +5,19 @@ use WeedPhp\Transport\Curl;
 
 /**
  *
- * Client for Weed-fs
+ * Client for Weed-fs.
+ * 
+ * http://code.google.com/p/weed-fs/
  *
  * @author micjohnson
- *
+ * 
  */
 class Client
 {
     /** @var Curl transport */
     protected $transport;
 
-    /** @var string weed-fs master server prot://ip:port */
+    /** @var string weed-fs master server http://ip:port */
     protected $storageAddress;
 
     /**
@@ -34,6 +36,9 @@ class Client
      *
      * Get a fid and a volume server url
      *
+     * for replication options see:
+     * http://code.google.com/p/weed-fs/#Rack-Aware_and_Data_Center-Aware_Replication
+     * 
      * @param number $count
      * @param string $replication
      * @return mixed $response response from curl
@@ -48,6 +53,7 @@ class Client
         }
         
         $response = $assignUrl = $this->transport->get($assignUrl);
+        
         $this->transport->close();
 
         // {"count":1,"fid":"3,01637037d6","url":"127.0.0.1:8080","publicUrl":"localhost:8080"}
@@ -66,7 +72,9 @@ class Client
     {
         $deleteUrl = $volumeServerAddress . '/' . $fid;
         // TODO check for http://
+        
         $response = $this->transport->custom($deleteUrl, 'delete');
+        
         $this->transport->close();
 
         return $response;
@@ -83,7 +91,9 @@ class Client
     {
         $lookupUrl = $this->storageAddress . '/dir/lookup';
         $lookupUrl .= '?volumeId=' . $volumeId;
+        
         $response = $this->transport->get($lookupUrl);
+        
         $this->transport->close();
 
         // {"locations":[{"publicUrl":"localhost:8080","url":"localhost:8080"}]}
@@ -105,7 +115,10 @@ class Client
         $growUrl = $this->storageAddress . '/dir/grow';
         $growUrl .= '?count=' . $count;
         $growUrl .= '&replication=' . $replication;
+        
         $response = $this->transport->get($growUrl);
+        
+        $this->transport->close();
 
         return $response;
     }
@@ -122,7 +135,9 @@ class Client
     {
         $retrieveUrl = $volumeServerAddress . '/' . $fid;
         // TODO check for http://
+        
         $response = $this->transport->get($retrieveUrl);
+        
         $this->transport->close();
 
         return $response;
@@ -136,7 +151,9 @@ class Client
     public function status()
     {
         $statusAddress = $this->storageAddress . '/dir/status';
+        
         $response = $this->transport->get($statusAddress);
+        
         $this->transport->close();
 
         return $response;
@@ -148,7 +165,7 @@ class Client
      * as you have number of files.
      * 
      * @param string $volumeServerAddress
-     * @param string $fid
+     * @param string $fid base fid for all files
      * @param array $files
      * @return mixed $response
      */
@@ -161,9 +178,12 @@ class Client
         $response = array();
         for($i = 1; $i <= $count; $i++) {
             $parameters = array('file'=>$files[$i-1]);
+            
             $response[] = $this->transport->post($storeUrl, $parameters);
+            
             $storeUrl = $volumeServerAddress . '/' . $fid . '_' . $i;
         }
+        
         $this->transport->close();
 
         return $response;
@@ -182,8 +202,11 @@ class Client
     public function store($volumeServerAddress, $fid, $file)
     {
         $storeUrl = $volumeServerAddress . '/' . $fid;
+        
         $parameters = array('file'=>$file);
+        
         $response = $this->transport->post(storeUrl, $parameters);
+        
         $this->transport->close();
 
         return $response;

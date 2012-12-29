@@ -44,12 +44,12 @@ class Curl
         return $this->execCurl();
     }
 
-    public function setCurlTargetUrl($url)
+    private function setCurlTargetUrl($url)
     {
         curl_setopt($this->curl, CURLOPT_URL, $url);
     }
 
-    public function setCurlOptions(array $options)
+    private function setCurlOptions(array $options)
     {
         foreach($options as $option=>$value) {
             curl_setopt($this->curl, $option, $value);
@@ -70,7 +70,7 @@ class Curl
 
     public function close()
     {
-        if($this->curl != 0) {
+        if($this->curl !== 0) {
             curl_close($this->curl);
             $this->curl = 0;
         }
