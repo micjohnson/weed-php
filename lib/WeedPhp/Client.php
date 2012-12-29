@@ -35,6 +35,7 @@ class Client
      * Get a fid and a volume server url
      *
      * @param number $count
+     * @param string $replication
      * @return mixed $response response from curl
      */
     public function assign($count, $replication = null)
