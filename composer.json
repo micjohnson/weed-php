@@ -1,7 +1,7 @@
 {
     "name": "micjohnson/weed-php",
-    "description": "PHP Weed-FS client",
-    "keywords": ["weedfs","client"],
+    "description": "PHP client for Weed-FS, a simple and highly scalable distributed file system.",
+    "keywords": ["weedfs","weed-fs","client","fs","blob storage","clob storage"],
     "homepage": "https://github.com/micjohnson/weed-php",
     "type": "library",
     "license": "Apache 2.0",
