@@ -65,14 +65,14 @@ class Curl
 
     private function execCurl()
     {
-        return curl_exec($this->_curl);
+        return curl_exec($this->curl);
     }
 
     public function close()
     {
         if($this->curl != 0) {
             curl_close($this->curl);
-            $this->_curl = 0;
+            $this->curl = 0;
         }
     }
 }
