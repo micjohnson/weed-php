@@ -81,10 +81,10 @@ class Client
         return $response;
     }
     
-    public function store($imageAddress, $id, $image)
+    public function store($fileAddress, $id, $file)
     {
-        $storeUrl = $imageAddress . 'id';
-        $parameters = array('file'=>$image);
+        $storeUrl = $fileAddress . 'id';
+        $parameters = array('file'=>$file);
         $response = $this->transport->post(storeUrl, $parameters);
         $this->transport->close();
         return $response;
