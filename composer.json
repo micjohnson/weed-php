@@ -2,7 +2,7 @@
     "name": "micjohnson/weed-php",
     "description": "PHP Weed-FS client",
     "keywords": ["weedfs","client"],
-    "homepage": "https://github.com/micjohnson/WeedPhp",
+    "homepage": "https://github.com/micjohnson/weed-php",
     "type": "library",
     "license": "Apache 2.0",
     "authors": [
