@@ -1,6 +1,7 @@
 <?php
+require_once dirname(__FILE__) . '/../../../autoload.php';
 
-require_once dirname(__FILE__) . '/../../../../lib/WeedPhp/Transport/Curl.php';
+use WeedPhp\Transport\Curl;
 
 /**
  * 
@@ -13,8 +14,8 @@ class CurlTest extends PHPUnit_Framework_TestCase
 {
     public function testCreateTransport()
     {
-        $transport = new WeedPhp\Transport\Curl();
-        if($transport instanceof WeedPhp\Transport\Curl) {
+        $transport = new Curl();
+        if($transport instanceof Curl) {
             $this->assertTrue(true);
         } else {
             $this->assertTrue(false);

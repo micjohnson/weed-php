@@ -1,6 +1,7 @@
 <?php
-require_once dirname(__FILE__) . '/../../../lib/WeedPhp/Client.php';
-require_once dirname(__FILE__) . '/../../../lib/WeedPhp/Transport/Curl.php';
+require_once dirname(__FILE__) . '/../../autoload.php';
+
+use WeedPhp\Client;
 
 /**
  * 
@@ -13,8 +14,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
 {
     public function testCreateClient()
     {
-        $weedClient = new WeedPhp\Client('http://localhost:9333');
-        if($weedClient instanceof WeedPhp\Client) {
+        $weedClient = new Client('http://localhost:9333');
+        if($weedClient instanceof Client) {
             $this->assertTrue(true);
         } else {
             $this->assertTrue(false);
