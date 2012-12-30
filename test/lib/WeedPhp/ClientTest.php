@@ -2,6 +2,13 @@
 require_once dirname(__FILE__) . '/../../../lib/WeedPhp/Client.php';
 require_once dirname(__FILE__) . '/../../../lib/WeedPhp/Transport/Curl.php';
 
+/**
+ * 
+ * @author micjohnson
+ * 
+ * TODO: Test grow and status
+ *
+ */
 class ClientTest extends PHPUnit_Framework_TestCase
 {
     public function testCreateClient()

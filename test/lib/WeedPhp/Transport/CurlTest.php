@@ -2,6 +2,13 @@
 
 require_once dirname(__FILE__) . '/../../../../lib/WeedPhp/Transport/Curl.php';
 
+/**
+ * 
+ * @author micjohnson
+ * 
+ * TODO test get, post, custom
+ *
+ */
 class CurlTest extends PHPUnit_Framework_TestCase
 {
     public function testCreateTransport()

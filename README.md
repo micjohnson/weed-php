@@ -8,8 +8,8 @@ http://code.google.com/p/weed-fs/
 
 Status:
 ======================
-In development
+Ready for testing / In Development
 
 Testing:
 ======================
-Incomplete
+9/13 functions tested
