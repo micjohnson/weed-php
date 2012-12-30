@@ -18,6 +18,52 @@ class ClientTest extends PHPUnit_Framework_TestCase
     
     /**
      * @depends testCreateClient
+     */    
+    public function testAssignMultiple($weedClient)
+    {
+        $response = $weedClient->assign(5);
+        $response = json_decode($response, true);
+        $this->assertEquals(5, $response['count']);
+        return $response;
+    }
+    
+    /**
+     * @depends testCreateClient
+     * @depends testAssignMultiple
+     */
+    public function testStoreMultiple($weedClient, $mutlipleAssignResponse)
+    {
+        $volumeServerAddress = $mutlipleAssignResponse['publicUrl'];
+        $fid = $mutlipleAssignResponse['fid'];
+        $files = array("HelloWeed", "How are you today?", "well I hope", "Well I better go", "bye");
+        $response = $weedClient->storeMultiple($volumeServerAddress, $fid, $files);
+
+        $this->assertEquals(5, count($response));
+        return $response;
+    }
+    
+    /**
+     * @depends testCreateClient
+     * @depends testAssignMultiple
+     * @depends testStoreMultiple
+     */
+    public function testDeleteMultiple($weedClient, $multipleAssignResponse, $multipleStoreResponse)
+    {
+        $count = count($multipleStoreResponse);
+        $volumeServerAddress = $multipleAssignResponse['publicUrl'];
+        $fid = $multipleAssignResponse['fid'];
+        $origFid = $fid;
+        for($i = 0;$i < $count; $i++)
+        {
+            $response = $weedClient->delete($volumeServerAddress, $fid);
+            $response = json_decode($response, true);
+            $this->assertGreaterThan(2, $response['size']);
+            $fid = $origFid . '_' . ($i+1);
+        }
+    }
+    
+    /**
+     * @depends testCreateClient
      */
     public function testAssign($weedClient)
     {

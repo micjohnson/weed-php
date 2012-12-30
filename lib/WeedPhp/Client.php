@@ -46,7 +46,7 @@ class Client
     public function assign($count = 1, $replication = null)
     {
         $assignUrl = $this->storageAddress . '/dir/assign';
-        $assignUrl .= '?count' . intval($count);
+        $assignUrl .= '?count=' . intval($count);
         
         if($replication !== null) {
             $assignUrl .= '&replication=' . $replication;
