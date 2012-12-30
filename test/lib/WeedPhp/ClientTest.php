@@ -24,6 +24,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $response = $weedClient->assign(5);
         $response = json_decode($response, true);
         $this->assertEquals(5, $response['count']);
+        
         return $response;
     }
     
@@ -37,8 +38,13 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $fid = $mutlipleAssignResponse['fid'];
         $files = array("HelloWeed", "How are you today?", "well I hope", "Well I better go", "bye");
         $response = $weedClient->storeMultiple($volumeServerAddress, $fid, $files);
-
         $this->assertEquals(5, count($response));
+        foreach($response as $individualResponse) {
+            $individualResponse = json_decode($individualResponse, true);
+            $this->assertGreaterThan(2, $individualResponse['size']);
+            
+        }
+        
         return $response;
     }
     
@@ -70,6 +76,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
         $response = $weedClient->assign();
         $response = json_decode($response, true);
         $this->assertEquals(1, $response['count']);
+        
         return $response;
     }
     
