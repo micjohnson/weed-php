@@ -43,7 +43,7 @@ class Client
      * @param string $replication
      * @return mixed $response response from curl
      */
-    public function assign($count, $replication = null)
+    public function assign($count = 1, $replication = null)
     {
         $assignUrl = $this->storageAddress . '/dir/assign';
         $assignUrl .= '?count' . intval($count);
@@ -73,7 +73,7 @@ class Client
         $deleteUrl = $volumeServerAddress . '/' . $fid;
         // TODO check for http://
         
-        $response = $this->transport->custom($deleteUrl, 'delete');
+        $response = $this->transport->custom($deleteUrl, 'DELETE');
         
         $this->transport->close();
 
@@ -205,7 +205,7 @@ class Client
         
         $parameters = array('file'=>$file);
         
-        $response = $this->transport->post(storeUrl, $parameters);
+        $response = $this->transport->post($storeUrl, $parameters);
         
         $this->transport->close();
 

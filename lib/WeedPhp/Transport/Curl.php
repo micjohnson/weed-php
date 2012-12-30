@@ -32,7 +32,7 @@ class Curl
                 CURLOPT_AUTOREFERER => 1,
                 CURLOPT_FOLLOWLOCATION => 1,
                 CURLOPT_RETURNTRANSFER => 1,
-                CURLOPT_CUSTOMREQUEST => $method,
+                CURLOPT_CUSTOMREQUEST => $command,
         ));
     }
 
