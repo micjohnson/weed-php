@@ -32,7 +32,8 @@ class CurlTest extends PHPUnit_Framework_TestCase
     	$response = json_decode($response,true);
     	$args = $response['args'];
     	
-    	$this->assertTrue($args['get'] == true);
+    	$this->assertTrue($args['get'] === "true");
+    	$transport->close();
     }
     
     /**
@@ -41,11 +42,12 @@ class CurlTest extends PHPUnit_Framework_TestCase
     public function testPost($transport)
     {
     	$response = $transport->post('http://httpbin.org/post', array('post'=>'true'));
-    	echo $response;
+
     	$response = json_decode($response,true);
-    	$args = $response['args'];
+    	$form = $response['form'];
     	 
-    	$this->assertTrue($args['post'] == true);
+    	$this->assertTrue($form['post'] === "true");
+    	$transport->close();
     }
     
     /**
@@ -54,8 +56,10 @@ class CurlTest extends PHPUnit_Framework_TestCase
     public function testCustom($transport)
     {
     	$response = $transport->custom('http://httpbin.org/delete', 'DELETE');
-    	echo $response; 
+ 
+    	echo $response;
     	$response = json_decode($response,true);
     	
+    	$transport->close();
     }
 }
