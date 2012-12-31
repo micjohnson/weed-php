@@ -32,6 +32,6 @@ class CurlTest extends PHPUnit_Framework_TestCase
     	$response = json_decode($response,true);
     	$args = $response['args'];
     	
-    	$this->assetTrue($args['get']);
+    	$this->assertTrue($args['get']);
     }
 }
