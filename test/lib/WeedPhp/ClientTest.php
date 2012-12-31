@@ -67,7 +67,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAssignMultiple($weedClient)
 	{
-		$response = $weedClient->assign(25, "100");
+		$response = $weedClient->assign(25, "001");
 		$response = json_decode($response, true);
 		$this->assertEquals(25, $response['count']);
 
