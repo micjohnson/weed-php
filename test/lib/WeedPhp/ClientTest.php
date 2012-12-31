@@ -180,6 +180,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	public function testDeleteMultiple($weedClient, $multipleAssignResponse, $multipleStoreResponse)
 	{
 		$count = count($multipleStoreResponse);
+		echo "Deleting $count files\n";
 		$volumeServerAddress = $multipleAssignResponse['publicUrl'];
 		$fid = $multipleAssignResponse['fid'];
 		$origFid = $fid;
@@ -199,6 +200,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testDeleteFile($weedClient, $assignResponse)
 	{
+		echo "Deleting 1 file\n";
 		$volumeServerAddress = $assignResponse['publicUrl'];
 		$fid = $assignResponse['fid'];
 		$response = $weedClient->delete($volumeServerAddress, $fid);
