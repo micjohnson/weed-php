@@ -29,6 +29,9 @@ class CurlTest extends PHPUnit_Framework_TestCase
     public function testGet($transport)
     {
     	$response = $transport->get('http://httpbin.org/get?get=true');
-    	echo $response;
+    	$response = json_decode($response,true);
+    	$args = $response['args'];
+    	
+    	$this->assetTrue($args['get']);
     }
 }
