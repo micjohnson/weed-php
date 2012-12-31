@@ -34,4 +34,17 @@ class CurlTest extends PHPUnit_Framework_TestCase
     	
     	$this->assertTrue($args['get'] == true);
     }
+    
+    /**
+     * @depends testCreateTransport
+     */
+    public function testPost($transport)
+    {
+    	$response = $transport->get('http://httpbin.org/post', array('post'=>'true'));
+    	
+    	$response = json_decode($response,true);
+    	$args = $response['args'];
+    	 
+    	$this->assertTrue($args['post'] == true);
+    }
 }
