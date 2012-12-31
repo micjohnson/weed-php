@@ -157,8 +157,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	*
 	public function testGrow($weedClient)
 	{
-	$response = $weedClient->grow(2, "001");
-
+	$response = $weedClient->grow(1, "001");
+    // { "count": 0 }
 	echo ":\"\n" . $response . "\n\"";
 	}
 
