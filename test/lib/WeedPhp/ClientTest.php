@@ -160,9 +160,8 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testGrow($weedClient)
 	{
-		$response = $weedClient->grow(2, "001");
-		// { "count": 0 }
-		echo ":\"\n" . $response . "\n\"";
+		$response = $weedClient->grow(2, "100");
+		$this->assertTrue(array_key_exists('count', json_decode($response, true)));
 	}
 
 
