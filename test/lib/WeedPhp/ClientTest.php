@@ -58,9 +58,9 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAssignMultiple($weedClient)
 	{
-		$response = $weedClient->assign(5);
+		$response = $weedClient->assign(25);
 		$response = json_decode($response, true);
-		$this->assertEquals(5, $response['count']);
+		$this->assertEquals(25, $response['count']);
 
 		return $response;
 	}
@@ -73,9 +73,12 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	{
 		$volumeServerAddress = $mutlipleAssignResponse['publicUrl'];
 		$fid = $mutlipleAssignResponse['fid'];
-		$files = array("HelloWeed", "How are you today?", "well I hope", "Well I better go", "byebye");
+		$files = array();
+		for($i=0;$i<25;$i++) {
+			$files[] = uniqid();
+		}
 		$response = $weedClient->storeMultiple($volumeServerAddress, $fid, $files);
-		$this->assertEquals(5, count($response));
+		$this->assertEquals(25, count($response));
 		foreach($response as $individualResponse) {
 			$individualResponse = json_decode($individualResponse, true);
 			$this->assertGreaterThan(2, $individualResponse['size']);
@@ -148,21 +151,21 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(9, $response['size']);
 	}
 
-	/*
+	/**
 	 * @depends testCreateClient
-	* @depends testAssignMultiple
-	* @depends testStoreMultiple
-	* @depends testAssign
-	* @depends testStoreFile
-	*
+	 * @depends testAssignMultiple
+	 * @depends testStoreMultiple
+	 * @depends testAssign
+	 * @depends testStoreFile
+	 */
 	public function testGrow($weedClient)
 	{
-	$response = $weedClient->grow(1, "001");
-    // { "count": 0 }
-	echo ":\"\n" . $response . "\n\"";
+		$response = $weedClient->grow(2, "001");
+		// { "count": 0 }
+		echo ":\"\n" . $response . "\n\"";
 	}
 
-	*/
+
 
 
 	/**
