@@ -28,11 +28,11 @@ class CurlTest extends PHPUnit_Framework_TestCase
      */
     public function testGet($transport)
     {
-    	$response = $transport->get('http://httpbin.org/get?get=true');
+    	$response = $transport->get('http://httpbin.org/get?get=true&baz=bar');
     	$response = json_decode($response,true);
     	$args = $response['args'];
     	
-    	$this->assertTrue($args['get'] === "true");
+    	$this->assertTrue($args['get'] === "true" && $args['baz'] === 'bar');
     	$transport->close();
     }
     
@@ -41,12 +41,12 @@ class CurlTest extends PHPUnit_Framework_TestCase
      */
     public function testPost($transport)
     {
-    	$response = $transport->post('http://httpbin.org/post', array('post'=>'true'));
+    	$response = $transport->post('http://httpbin.org/post', array('post'=>'true', 'file'=>'baz'));
 
     	$response = json_decode($response,true);
     	$form = $response['form'];
     	 
-    	$this->assertTrue($form['post'] === "true");
+    	$this->assertTrue($form['post'] === "true" && $form['file'] === 'baz');
     	$transport->close();
     }
     
