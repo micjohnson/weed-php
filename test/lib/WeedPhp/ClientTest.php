@@ -58,7 +58,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAssignMultiple($weedClient)
 	{
-		$response = $weedClient->assign(5, "001");
+		$response = $weedClient->assign(5, "100");
 		echo "\"" . $response;
 		$response = json_decode($response, true);
 		$this->assertEquals(5, $response['count']);
@@ -127,7 +127,12 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		$volumeServerAddress = $assignResponse['publicUrl'];
 		$response = $weedClient->volumeServerStatus($volumeServerAddress);
 		
-		echo ":\"\n" . $response  . "\"\n";
+		$response = json_decode($response, true);
+		if(array_key_exists('Version', $response)) {
+			$this->assertTrue(true);
+		} else {
+			$this->assertTrue(false);
+		}
 	}
 	
 	/**
