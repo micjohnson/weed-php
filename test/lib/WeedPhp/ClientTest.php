@@ -20,6 +20,22 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	/**
 	 * @depends testCreateClient
 	 */
+	public function testPopulateVolumes($weedClient)
+	{
+		$response = $weedClient->assign(20);
+		$response = json_decode($response, true);
+		$volumeServerAddress = $response['publicUrl'];
+		$fid = $response['fid'];
+		$files = array();
+		for($i=0;$i<20;$i++) {
+			$files[] = uniqid();
+		}
+		$response = $weedClient->storeMultiple($volumeServerAddress, $fid, $files);
+	}
+
+	/**
+	 * @depends testCreateClient
+	 */
 	public function testStatus($weedClient)
 	{
 		$response = $weedClient->status();
