@@ -40,7 +40,7 @@ class CurlTest extends PHPUnit_Framework_TestCase
      */
     public function testPost($transport)
     {
-    	$response = $transport->get('http://httpbin.org/post', array('post'=>'true'));
+    	$response = $transport->post('http://httpbin.org/post', array('post'=>'true'));
     	echo $response;
     	$response = json_decode($response,true);
     	$args = $response['args'];
@@ -53,7 +53,7 @@ class CurlTest extends PHPUnit_Framework_TestCase
      */
     public function testCustom($transport)
     {
-    	$response = $transport->custom('http://httpbin.org', 'DELETE');
+    	$response = $transport->custom('http://httpbin.org/delete', 'DELETE');
     	echo $response; 
     	$response = json_decode($response,true);
     	
