@@ -65,6 +65,9 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		return $response;
 	}
 	
+	/**
+	 * @depends testCreateClient
+	 */
 	public function testFillVolumes($weedClient)
 	{
 		$weedClient->assign(10);
