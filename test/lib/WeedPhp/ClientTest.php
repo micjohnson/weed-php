@@ -73,7 +73,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	{
 		$volumeServerAddress = $mutlipleAssignResponse['publicUrl'];
 		$fid = $mutlipleAssignResponse['fid'];
-		$files = array("HelloWeed", "How are you today?", "well I hope", "Well I better go", "bye");
+		$files = array("HelloWeed", "How are you today?", "well I hope", "Well I better go", "byebye");
 		$response = $weedClient->storeMultiple($volumeServerAddress, $fid, $files);
 		$this->assertEquals(5, count($response));
 		foreach($response as $individualResponse) {
