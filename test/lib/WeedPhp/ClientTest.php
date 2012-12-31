@@ -55,11 +55,10 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @depends testCreateClient
-	 * @depends testAssign
 	 */
 	public function testAssignMultiple($weedClient)
 	{
-		$response = $weedClient->assign(5, "100");
+		$response = $weedClient->assign(5);
 		$response = json_decode($response, true);
 		$this->assertEquals(5, $response['count']);
 
@@ -68,7 +67,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @depends testCreateClient
-	 * @depends testAssign
 	 * @depends testAssignMultiple
 	 */
 	public function testStoreMultiple($weedClient, $mutlipleAssignResponse)
@@ -89,7 +87,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @depends testCreateClient
-	 * @depends testAssign
 	 * @depends testAssignMultiple
 	 * @depends testStoreMultiple
 	 */
