@@ -56,8 +56,6 @@ class CurlTest extends PHPUnit_Framework_TestCase
     public function testCustom($transport)
     {
     	$response = $transport->custom('http://httpbin.org/delete', 'DELETE');
- 
-    	echo $response;
     	$response = json_decode($response,true);
     	$this->assertTrue(count($response) > 0);
     	$transport->close();
