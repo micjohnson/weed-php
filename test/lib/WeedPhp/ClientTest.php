@@ -84,6 +84,18 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 		return $response;
 	}
+	
+	/**
+	 * @depends testCreateClient
+	 * @depends testAssignMultiple
+	 * @depends testStoreMultiple
+	 */
+	public function testGrow($weedClient)
+	{
+		$response = $weedClient->grow(2, "100");
+		
+		echo ":\"\n" . $response . "\n\"";
+	}
 
 	/**
 	 * @depends testCreateClient
