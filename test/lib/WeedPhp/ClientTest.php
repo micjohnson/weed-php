@@ -68,6 +68,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @depends testCreateClient
+	 * @depends testAssign
 	 * @depends testAssignMultiple
 	 */
 	public function testStoreMultiple($weedClient, $mutlipleAssignResponse)
@@ -88,6 +89,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @depends testCreateClient
+	 * @depends testAssign
 	 * @depends testAssignMultiple
 	 * @depends testStoreMultiple
 	 */
