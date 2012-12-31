@@ -128,40 +128,22 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(9, $response['size']);
 	}
 
-	/**
+	/*
 	 * @depends testCreateClient
-	 * @depends testAssignMultiple
-	 * @depends testStoreMultiple
-	 * @depends testAssign
-	 * @depends testStoreFile
-	 */
+	* @depends testAssignMultiple
+	* @depends testStoreMultiple
+	* @depends testAssign
+	* @depends testStoreFile
+	*
 	public function testGrow($weedClient)
 	{
-		$response = $weedClient->grow(2, "001");
+	$response = $weedClient->grow(2, "001");
 
-		echo ":\"\n" . $response . "\n\"";
+	echo ":\"\n" . $response . "\n\"";
 	}
 
+	*/
 
-	/**
-	 * @depends testCreateClient
-	 * @depends testAssignMultiple
-	 * @depends testStoreMultiple
-	 */
-	public function testDeleteMultiple($weedClient, $multipleAssignResponse, $multipleStoreResponse)
-	{
-		$count = count($multipleStoreResponse);
-		$volumeServerAddress = $multipleAssignResponse['publicUrl'];
-		$fid = $multipleAssignResponse['fid'];
-		$origFid = $fid;
-		for($i = 0;$i < $count; $i++)
-		{
-			$response = $weedClient->delete($volumeServerAddress, $fid);
-			$response = json_decode($response, true);
-			$this->assertGreaterThan(2, $response['size']);
-			$fid = $origFid . '_' . ($i+1);
-		}
-	}
 
 	/**
 	 * @depends testCreateClient
@@ -205,5 +187,26 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 		$response = $weedClient->retrieve($volumeServerAddress, $fid);
 		$this->assertEquals("", $response);
+	}
+
+
+	/**
+	 * @depends testCreateClient
+	 * @depends testAssignMultiple
+	 * @depends testStoreMultiple
+	 */
+	public function testDeleteMultiple($weedClient, $multipleAssignResponse, $multipleStoreResponse)
+	{
+		$count = count($multipleStoreResponse);
+		$volumeServerAddress = $multipleAssignResponse['publicUrl'];
+		$fid = $multipleAssignResponse['fid'];
+		$origFid = $fid;
+		for($i = 0;$i < $count; $i++)
+		{
+			$response = $weedClient->delete($volumeServerAddress, $fid);
+			$response = json_decode($response, true);
+			$this->assertGreaterThan(2, $response['size']);
+			$fid = $origFid . '_' . ($i+1);
+		}
 	}
 }
