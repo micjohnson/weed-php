@@ -4,10 +4,7 @@ php:
 
 before_script:
  - ./test/bin/run_weed-fs.sh
- - pear channel-discover pear.phpunit.de
- - pear install pear/PHP_CodeSniffer >/dev/null
  - phpenv rehash
  
 script: 
  - phpunit --coverage-text --configuration test/phpunit.xml test/
- - phpcs --standard=zend --report-width=100 *.php | grep -Ev "\| (Spaces|Line exceeds|Opening brace|Opening parenthesis|Closing parenthesis)|valid camel"
