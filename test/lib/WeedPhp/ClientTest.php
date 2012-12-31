@@ -3,13 +3,6 @@ require_once dirname(__FILE__) . '/../../autoload.php';
 
 use WeedPhp\Client;
 
-/**
- *
- * @author micjohnson
- *
- * TODO: Test grow and status
- *
- */
 class ClientTest extends PHPUnit_Framework_TestCase
 {
 	public function testCreateClient()
@@ -163,9 +156,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		$response = $weedClient->grow(2, "100");
 		$this->assertTrue(array_key_exists('count', json_decode($response, true)));
 	}
-
-
-
 
 	/**
 	 * @depends testCreateClient
