@@ -5,6 +5,7 @@ echo "starting servers";
 mkdir /tmp/data1
 ./weed-fs/weed master &
 ./weed-fs/weed volume -dir="/tmp/data1" -max=5  -mserver="localhost:9333" -port=8080 &
+./weed-fs/weed volume -dir="/tmp/data1" -max=5  -mserver="127.0.0.1:9333" -port=8081 &
 sleep 5s
 echo "weed-fs master and volume server running"
 
