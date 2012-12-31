@@ -22,4 +22,13 @@ class CurlTest extends PHPUnit_Framework_TestCase
         }
         return $transport;
     }
+    
+    /**
+     * @depends testCreateTransport
+     */
+    public function testGet($transport)
+    {
+    	$response = $transport->get('http://httpbin.org/get?get=true');
+    	echo $response;
+    }
 }
