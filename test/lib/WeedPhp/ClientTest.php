@@ -89,6 +89,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 * @depends testCreateClient
 	 * @depends testAssignMultiple
 	 * @depends testStoreMultiple
+	 * @depends testAssign
 	 * @depends testStoreFile
 	 */
 	public function testGrow($weedClient)
