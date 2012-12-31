@@ -59,7 +59,7 @@ class CurlTest extends PHPUnit_Framework_TestCase
  
     	echo $response;
     	$response = json_decode($response,true);
-    	
+    	$this->assertTrue(count($response) > 0);
     	$transport->close();
     }
 }
