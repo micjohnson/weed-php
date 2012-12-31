@@ -55,6 +55,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @depends testCreateClient
+	 * @depends testAssign
 	 */
 	public function testAssignMultiple($weedClient)
 	{
@@ -63,14 +64,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		$this->assertEquals(5, $response['count']);
 
 		return $response;
-	}
-	
-	/**
-	 * @depends testCreateClient
-	 */
-	public function testFillVolumes($weedClient)
-	{
-		$weedClient->assign(10);
 	}
 
 	/**
