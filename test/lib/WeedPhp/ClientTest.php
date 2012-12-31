@@ -174,24 +174,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 	/**
 	 * @depends testCreateClient
-	 * @depends testAssign
-	 * @depends testRetrieveFile
-	 */
-	public function testDeleteFile($weedClient, $assignResponse)
-	{
-		$volumeServerAddress = $assignResponse['publicUrl'];
-		$fid = $assignResponse['fid'];
-		$response = $weedClient->delete($volumeServerAddress, $fid);
-		$response = json_decode($response, true);
-		$this->assertEquals(35, $response['size']);
-
-		$response = $weedClient->retrieve($volumeServerAddress, $fid);
-		$this->assertEquals("", $response);
-	}
-
-
-	/**
-	 * @depends testCreateClient
 	 * @depends testAssignMultiple
 	 * @depends testStoreMultiple
 	 */
@@ -208,5 +190,22 @@ class ClientTest extends PHPUnit_Framework_TestCase
 			$this->assertGreaterThan(2, $response['size']);
 			$fid = $origFid . '_' . ($i+1);
 		}
+	}
+
+	/**
+	 * @depends testCreateClient
+	 * @depends testAssign
+	 * @depends testRetrieveFile
+	 */
+	public function testDeleteFile($weedClient, $assignResponse)
+	{
+		$volumeServerAddress = $assignResponse['publicUrl'];
+		$fid = $assignResponse['fid'];
+		$response = $weedClient->delete($volumeServerAddress, $fid);
+		$response = json_decode($response, true);
+		$this->assertEquals(35, $response['size']);
+
+		$response = $weedClient->retrieve($volumeServerAddress, $fid);
+		$this->assertEquals("", $response);
 	}
 }
