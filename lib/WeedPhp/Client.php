@@ -11,6 +11,8 @@ use WeedPhp\Transport\Curl;
  *
  * @author micjohnson
  * 
+ * TODO look at /admin/assign_volume, /admin/assign_volume_check, /admin/assign_volume_commit, /admin/assign_volume_compact
+ * 
  */
 class Client
 {
@@ -112,7 +114,7 @@ class Client
      */
     public function grow($count, $replication)
     {
-        $growUrl = $this->storageAddress . '/dir/grow';
+        $growUrl = $this->storageAddress . '/vol/grow';
         $growUrl .= '?count=' . $count;
         $growUrl .= '&replication=' . $replication;
         
@@ -157,6 +159,40 @@ class Client
         $this->transport->close();
 
         return $response;
+    }
+    
+    /**
+     * 
+     * Is in source, haven't tested
+     * 
+     * @return mixed $response
+     */
+    public function volumeStatus()
+    {
+        $statusAddress = $this->storageAddress . '/vol/status';
+        
+        $response = $this->transport->get($statusAddress);
+        
+        $this->transport->close();
+
+        return $response;
+    }
+    
+    /**
+     * 
+     * Is in source, need to test
+     * 
+     * @param string $volumeServerAddress
+     */
+    public function volumeServerStatus($volumeServerAddress)
+    {
+    	$statusAddress = $volumeServerAddress . '/status';
+    	
+    	$response = $this->transport->get($statusAddress);
+    	
+    	$this->transport->close();
+    	
+    	return $response;
     }
 
     /**
