@@ -208,6 +208,7 @@ class Client
     public function storeMultiple($volumeServerAddress, $fid, array $files)
     {
         $count = count($files);
+        
         $storeUrl = $volumeServerAddress . '/' . $fid;
         // TODO check for http://
 
