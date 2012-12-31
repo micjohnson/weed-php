@@ -30,7 +30,23 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	public function testStatus($weedClient)
 	{
 		 $response = $weedClient->status();
+		 $response = json_decode($response, true);
+		 
+		 if(array_key_exists('Version', $response)) {
+		 	$this->assertTrue(true);
+		 } else {
+		 	$this->assertTrue(false);
+		 }
+	}
+	
+	/**
+	 * @depends testCreateClient
+	 */
+	public function testVolumeStatus($weedClient)
+	{
+		 $response = $weedClient->status();
 		 echo "\"\n" . $response . "\n\"";
+		 $response = json_decode($response, true);
 	}
 
 	/**
@@ -38,7 +54,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAssignMultiple($weedClient)
 	{
-		$response = $weedClient->assign(5);
+		$response = $weedClient->assign(5, "111");
 		$response = json_decode($response, true);
 		$this->assertEquals(5, $response['count']);
 
