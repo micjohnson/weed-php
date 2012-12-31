@@ -37,7 +37,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testVolumeStatus($weedClient)
 	{
-		$response = $weedClient->status();
+		$response = $weedClient->volumeStatus();
 		$response = json_decode($response, true);
 		if(array_key_exists('Version', $response)) {
 			$this->assertTrue(true);
