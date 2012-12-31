@@ -29,28 +29,28 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testStatus($weedClient)
 	{
-		 $response = $weedClient->status();
-		 $response = json_decode($response, true);
-		 
-		 if(array_key_exists('Version', $response)) {
-		 	$this->assertTrue(true);
-		 } else {
-		 	$this->assertTrue(false);
-		 }
+		$response = $weedClient->status();
+		$response = json_decode($response, true);
+			
+		if(array_key_exists('Version', $response)) {
+			$this->assertTrue(true);
+		} else {
+			$this->assertTrue(false);
+		}
 	}
-	
+
 	/**
 	 * @depends testCreateClient
 	 */
 	public function testVolumeStatus($weedClient)
 	{
-		 $response = $weedClient->status();
-		 $response = json_decode($response, true);
-		 if(array_key_exists('Version', $response)) {
-		 	$this->assertTrue(true);
-		 } else {
-		 	$this->assertTrue(false);
-		 }
+		$response = $weedClient->status();
+		$response = json_decode($response, true);
+		if(array_key_exists('Version', $response)) {
+			$this->assertTrue(true);
+		} else {
+			$this->assertTrue(false);
+		}
 	}
 
 	/**
@@ -84,40 +84,6 @@ class ClientTest extends PHPUnit_Framework_TestCase
 
 		return $response;
 	}
-	
-	/**
-	 * @depends testCreateClient
-	 * @depends testAssignMultiple
-	 * @depends testStoreMultiple
-	 * @depends testAssign
-	 * @depends testStoreFile
-	 */
-	public function testGrow($weedClient)
-	{
-		$response = $weedClient->grow(2, "100");
-		
-		echo ":\"\n" . $response . "\n\"";
-	}
-
-	/**
-	 * @depends testCreateClient
-	 * @depends testAssignMultiple
-	 * @depends testStoreMultiple
-	 */
-	public function testDeleteMultiple($weedClient, $multipleAssignResponse, $multipleStoreResponse)
-	{
-		$count = count($multipleStoreResponse);
-		$volumeServerAddress = $multipleAssignResponse['publicUrl'];
-		$fid = $multipleAssignResponse['fid'];
-		$origFid = $fid;
-		for($i = 0;$i < $count; $i++)
-		{
-			$response = $weedClient->delete($volumeServerAddress, $fid);
-			$response = json_decode($response, true);
-			$this->assertGreaterThan(2, $response['size']);
-			$fid = $origFid . '_' . ($i+1);
-		}
-	}
 
 	/**
 	 * @depends testCreateClient
@@ -139,7 +105,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	{
 		$volumeServerAddress = $assignResponse['publicUrl'];
 		$response = $weedClient->volumeServerStatus($volumeServerAddress);
-		
+
 		$response = json_decode($response, true);
 		if(array_key_exists('Version', $response)) {
 			$this->assertTrue(true);
@@ -147,7 +113,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 			$this->assertTrue(false);
 		}
 	}
-	
+
 	/**
 	 * @depends testCreateClient
 	 * @depends testAssign
@@ -160,6 +126,41 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		$response = $weedClient->store($volumeServerAddress, $fid, $file);
 		$response = json_decode($response, true);
 		$this->assertEquals(9, $response['size']);
+	}
+
+	/**
+	 * @depends testCreateClient
+	 * @depends testAssignMultiple
+	 * @depends testStoreMultiple
+	 * @depends testAssign
+	 * @depends testStoreFile
+	 */
+	public function testGrow($weedClient)
+	{
+		$response = $weedClient->grow(2, "100");
+
+		echo ":\"\n" . $response . "\n\"";
+	}
+
+
+	/**
+	 * @depends testCreateClient
+	 * @depends testAssignMultiple
+	 * @depends testStoreMultiple
+	 */
+	public function testDeleteMultiple($weedClient, $multipleAssignResponse, $multipleStoreResponse)
+	{
+		$count = count($multipleStoreResponse);
+		$volumeServerAddress = $multipleAssignResponse['publicUrl'];
+		$fid = $multipleAssignResponse['fid'];
+		$origFid = $fid;
+		for($i = 0;$i < $count; $i++)
+		{
+			$response = $weedClient->delete($volumeServerAddress, $fid);
+			$response = json_decode($response, true);
+			$this->assertGreaterThan(2, $response['size']);
+			$fid = $origFid . '_' . ($i+1);
+		}
 	}
 
 	/**
