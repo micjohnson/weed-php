@@ -4,7 +4,6 @@ php:
 
 before_script:
  - ./test/bin/run_weed-fs.sh
- - phpenv rehash
  
 script: 
  - phpunit --coverage-text --configuration test/phpunit.xml test/
