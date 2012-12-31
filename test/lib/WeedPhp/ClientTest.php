@@ -45,8 +45,12 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	public function testVolumeStatus($weedClient)
 	{
 		 $response = $weedClient->status();
-		 echo "\"\n" . $response . "\n\"";
 		 $response = json_decode($response, true);
+		 if(array_key_exists('Version', $response)) {
+		 	$this->assertTrue(true);
+		 } else {
+		 	$this->assertTrue(false);
+		 }
 	}
 
 	/**
@@ -54,7 +58,7 @@ class ClientTest extends PHPUnit_Framework_TestCase
 	 */
 	public function testAssignMultiple($weedClient)
 	{
-		$response = $weedClient->assign(5, "111");
+		$response = $weedClient->assign(5, "001");
 		echo "\"" . $response;
 		$response = json_decode($response, true);
 		$this->assertEquals(5, $response['count']);
@@ -114,6 +118,18 @@ class ClientTest extends PHPUnit_Framework_TestCase
 		return $response;
 	}
 
+	/**
+	 * @depends testCreateClient
+	 * @depends testAssign
+	 */
+	public function testVolumeServerStatus($weedClient, $assignResponse)
+	{
+		$volumeServerAddress = $assignResponse['publicUrl'];
+		$response = $weedClient->volumeServerStatus($volumeServerAddress);
+		
+		echo ":\"\n" . $response  . "\"\n";
+	}
+	
 	/**
 	 * @depends testCreateClient
 	 * @depends testAssign
