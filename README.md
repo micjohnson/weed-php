@@ -1,3 +1,4 @@
+
 WeedPhp
 ======================
 
@@ -12,4 +13,4 @@ Ready for testing / In Development
 
 Testing:
 ======================
-9/13 functions tested
+dev-master: [![Build Status](https://travis-ci.org/micjohnson/weed-php.png?branch=master)](https://travis-ci.org/micjohnson/weed-php)
