@@ -92,7 +92,7 @@ Returns a json response with the locations where the volume is stored
 
 $volumeId is the number before the comma in the fileId.
 
-eg.
+eg.  
 fid = 3,01637037d6  
 volumeId = 3
 
