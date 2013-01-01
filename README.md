@@ -63,7 +63,7 @@ WeedPhp provides fucntions for most of the weed-fs REST calls.
 ### assign($count = 1, $replication = null)
 Assign returns a json response including the file id your file(s) will use, and where to store the file, using store.  
 
-When storing files with weed-fs the logic flow is assign then store. Assign reserves $count locations for files to be stored.    
+When storing files with weed-fs the logic flow is assign then store. Assign reserves $count locations for files to be stored (using a single file id).    
 
 A string can be passed for replication, defining the type of replication this file will be stored with. see http://code.google.com/p/weed-fs/#Rack-Aware_and_Data_Center-Aware_Replication  
 
@@ -93,7 +93,7 @@ Returns a json response with the locations where the volume is stored
 $volumeId is the number before the comma in the fileId.
 
 eg.
-fid = 3,01637037d6
+fid = 3,01637037d6  
 volumeId = 3
 
 ### retrieve($volumeServerAddress, $fileId)
