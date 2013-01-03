@@ -43,7 +43,7 @@ class Client
      * 
      * @param number $count
      * @param string $replication
-     * @return mixed $response response from curl
+     * @return mixed response from curl
      */
     public function assign($count = 1, $replication = null)
     {
@@ -68,7 +68,7 @@ class Client
      *
      * @param string $storageVolumeAddress
      * @param string $fid file id
-     * @return mixed $response
+     * @return mixed
      */
     public function delete($volumeServerAddress, $fid)
     {
@@ -87,7 +87,7 @@ class Client
      * Lookup locations for specified volume by id
      *
      * @param number $volumeId
-     * @return mixed $response
+     * @return mixed
      */
     public function lookup($volumeId)
     {
@@ -131,7 +131,7 @@ class Client
      *
      * @param string $volumeServerAddress
      * @param string $fid
-     * @return mixed $response
+     * @return mixed
      */
     public function retrieve($volumeServerAddress, $fid)
     {
@@ -165,7 +165,7 @@ class Client
      * 
      * Is in source, haven't tested
      * 
-     * @return mixed $response
+     * @return mixed
      */
     public function volumeStatus()
     {
@@ -203,7 +203,7 @@ class Client
      * @param string $volumeServerAddress
      * @param string $fid base fid for all files
      * @param array $files
-     * @return mixed $response
+     * @return mixede
      */
     public function storeMultiple($volumeServerAddress, $fid, array $files)
     {
@@ -234,7 +234,7 @@ class Client
      * @param string $volumeServerAddress
      * @param string $fid
      * @param unknown $file
-     * @return mixed $response
+     * @return mixed
      */
     public function store($volumeServerAddress, $fid, $file)
     {

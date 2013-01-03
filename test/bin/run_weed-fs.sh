@@ -1,6 +1,6 @@
 #!/bin/bash
-wget http://micjohnson.com:8620/files/weed-fs-0.26-linux-386.tar.gz
-tar -xzf weed-fs-0.26-linux-386.tar.gz
+wget http://micjohnson.com:8620/files/weed-fs-latest-linux-386.tar.gz
+tar -xzf weed-fs-latest-linux-386.tar.gz
 echo "starting servers";
 mkdir /tmp/data1
 mkdir /tmp/data2
