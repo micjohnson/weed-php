@@ -58,7 +58,7 @@ $weedPhp = new WeedPhp\Client('localhost:9333');
 
 ```
 
-WeedPhp provides fucntions for most of the weed-fs REST calls.
+WeedPhp provides functions for most of the weed-fs REST calls.
 
 ### assign($count = 1, $replication = null)
 Assign returns a json response including the file id your file(s) will use, and where to store the file, using store.  
